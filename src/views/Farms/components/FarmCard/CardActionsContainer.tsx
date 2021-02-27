@@ -10,11 +10,10 @@ import { useFarmFromSymbol, useFarmUser } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
 import { useApprove } from 'hooks/useApprove'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
 import { tokenName, images } from '../../../../config/app'
-
 
 const Action = styled.div`
   padding-top: 16px;
@@ -31,7 +30,7 @@ interface FarmCardActionsProps {
 }
 
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, addLiquidityUrl }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { pid, lpAddresses } = useFarmFromSymbol(farm.lpSymbol)
   const { allowance, tokenBalance, stakedBalance, earnings } = useFarmUser(pid)

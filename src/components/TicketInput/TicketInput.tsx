@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button } from '@blackswap/uikit'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import Input, { InputProps } from '../Input'
 
 interface TokenInputProps extends InputProps {
@@ -12,7 +12,7 @@ interface TokenInputProps extends InputProps {
 }
 
 const TicketInput: React.FC<TokenInputProps> = ({ max, symbol, availableSymbol, onChange, onSelectMax, value }) => {
-    const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <StyledTokenInput>
@@ -32,7 +32,9 @@ const TicketInput: React.FC<TokenInputProps> = ({ max, symbol, availableSymbol, 
         placeholder="0"
         value={value}
       />
-      <StyledMaxText>{t('ticket.input.avaialble', `${max.toLocaleString()} ${availableSymbol} Available`)}</StyledMaxText>
+      <StyledMaxText>
+        {t('ticket.input.avaialble', `${max.toLocaleString()} ${availableSymbol} Available`)}
+      </StyledMaxText>
     </StyledTokenInput>
   )
 }

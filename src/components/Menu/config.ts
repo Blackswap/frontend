@@ -1,5 +1,5 @@
 import { MenuEntry } from '@blackswap/uikit'
-import {exchangeUrl } from '../../config/app'
+import { exchangeUrl } from '../../config/app'
 
 const config: MenuEntry[] = [
   {
@@ -30,7 +30,7 @@ const config: MenuEntry[] = [
     label: 'Pools',
     icon: 'PoolIcon',
     href: '/pools',
-  }
+  },
 ]
 
 export default config

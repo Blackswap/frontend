@@ -4,7 +4,7 @@ import { Button, Modal, LinkExternal } from '@blackswap/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 interface DepositModalProps {
   max: BigNumber
@@ -15,8 +15,7 @@ interface DepositModalProps {
 }
 
 const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
-
-    const { t } = useTranslation();
+  const { t } = useTranslation()
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const fullBalance = useMemo(() => {
@@ -59,7 +58,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             onDismiss()
           }}
         >
-          {pendingTx ? t('farm.modal.deposit.pending', 'Pending Confirmation') : t('farm.modal.deposit.confirm', 'Confirm')}
+          {pendingTx
+            ? t('farm.modal.deposit.pending', 'Pending Confirmation')
+            : t('farm.modal.deposit.confirm', 'Confirm')}
         </Button>
       </ModalActions>
       <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }}>

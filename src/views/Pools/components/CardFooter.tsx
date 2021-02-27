@@ -6,7 +6,7 @@ import { ChevronDown, ChevronUp } from 'react-feather'
 import Balance from 'components/Balance'
 import { CommunityTag, CoreTag, BinanceTag } from 'components/Tags'
 import { PoolCategory } from 'config/constants/types'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 const tags = {
   [PoolCategory.BINANCE]: BinanceTag,
@@ -82,7 +82,7 @@ const CardFooter: React.FC<Props> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const Icon = isOpen ? ChevronUp : ChevronDown
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const handleClick = () => setIsOpen(!isOpen)
   const Tag = tags[poolCategory]

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './utils/i18n';
+import './utils/i18n'
 import App from './App'
 import Providers from './Providers'
 

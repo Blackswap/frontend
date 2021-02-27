@@ -7,9 +7,9 @@ export const tokenName = process.env.REACT_APP_TOKEN_NAME
 export const exchangeUrl = process.env.REACT_APP_EXCHANGE_URL
 
 export default {
-    images,
-    exchangeUrl,
-    tokenName,
-    appName,
-    twitter
+  images,
+  exchangeUrl,
+  tokenName,
+  appName,
+  twitter,
 }

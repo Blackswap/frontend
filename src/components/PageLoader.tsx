@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Spinner, SpinnerProps} from '@blackswap/uikit'
+import { Spinner, SpinnerProps } from '@blackswap/uikit'
 import Page from './layout/Page'
 
 const Wrapper = styled(Page)`
@@ -9,7 +9,7 @@ const Wrapper = styled(Page)`
   align-items: center;
 `
 
-const PageLoader: React.FC<SpinnerProps> = ({size= 6}) => {
+const PageLoader: React.FC<SpinnerProps> = ({ size = 6 }) => {
   return (
     <Wrapper>
       <Spinner size={size} />

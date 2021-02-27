@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Button, Input, InputProps, Flex, Link } from '@blackswap/uikit'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 interface ModalInputProps {
   max: string
@@ -65,7 +65,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
   addLiquidityUrl,
   inputTitle,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const isBalanceZero = max === '0' || !max
 

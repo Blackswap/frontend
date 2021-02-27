@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal } from '@blackswap/uikit'
 import ModalActions from 'components/ModalActions'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import TokenInput from '../../../components/TokenInput'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
 
@@ -15,9 +15,9 @@ interface DepositModalProps {
 
 const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '' }) => {
   const [val, setVal] = useState('')
-    const { t } = useTranslation();
+  const { t } = useTranslation()
 
-    const [pendingTx, setPendingTx] = useState(false)
+  const [pendingTx, setPendingTx] = useState(false)
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
@@ -56,7 +56,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             onDismiss()
           }}
         >
-          {pendingTx ? t('pool.modal.deposit.pending', 'Pending Confirmation') : t('pool.modal.deposit.confirm', 'Confirm')}
+          {pendingTx
+            ? t('pool.modal.deposit.pending', 'Pending Confirmation')
+            : t('pool.modal.deposit.confirm', 'Confirm')}
         </Button>
       </ModalActions>
     </Modal>

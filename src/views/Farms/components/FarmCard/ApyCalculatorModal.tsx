@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { Modal, Text, LinkExternal, Flex } from '@blackswap/uikit'
 import { calculateCakeEarnedPerThousandDollars, apyModalRoi } from 'utils/compoundApyHelpers'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import { tokenName } from '../../../../config/app'
 
 interface ApyCalculatorModalProps {
@@ -39,7 +39,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
 }) => {
   const farmApy = apy.times(new BigNumber(100)).toNumber()
   const oneThousandDollarsWorthOfCake = 1000 / cakePrice.toNumber()
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const cakeEarnedPerThousand1D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 1, farmApy, cakePrice })
   const cakeEarnedPerThousand7D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 7, farmApy, cakePrice })

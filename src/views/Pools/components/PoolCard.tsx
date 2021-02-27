@@ -16,7 +16,7 @@ import { useSousHarvest } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
 import CompoundModal from './CompoundModal'
@@ -55,7 +55,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   } = pool
   // Pools using native BNB behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const stakingTokenContract = useERC20(stakingTokenAddress)
   const { account } = useWallet()

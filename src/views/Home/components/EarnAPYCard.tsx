@@ -6,7 +6,7 @@ import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
 import { useFarms, usePriceBnbBusd } from 'state/hooks'
 import { BLOCKS_PER_YEAR, CAKE_PER_BLOCK, CAKE_POOL_PID } from 'config'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
@@ -24,7 +24,7 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
 const EarnAPYCard = () => {
   const farmsLP = useFarms()
   const bnbPrice = usePriceBnbBusd()
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const maxAPY = useRef(Number.MIN_VALUE)
 

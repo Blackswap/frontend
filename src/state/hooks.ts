@@ -20,7 +20,6 @@ import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
 import { QuoteToken } from '../config/constants/types'
 
-
 const ZERO = new BigNumber(0)
 
 export const useFetchPublicData = () => {
@@ -194,7 +193,6 @@ export const useAchievements = () => {
   return achievements
 }
 
-
 export const useTotalValue = (): BigNumber => {
   const farms = useFarms()
   const { account } = useWallet()
@@ -226,7 +224,7 @@ export const useTotalValue = (): BigNumber => {
     const pool = pools[i]
     let poolValue: BigNumber
     if (pool.stakingTokenName === QuoteToken.CAKE) {
-      const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18));
+      const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
       poolValue = saltPrice.times(totalSaltStaked)
     }
     poolsTotalValue = poolsTotalValue.plus(poolValue)
@@ -234,4 +232,3 @@ export const useTotalValue = (): BigNumber => {
 
   return farmsTotalValue.plus(poolsTotalValue)
 }
-

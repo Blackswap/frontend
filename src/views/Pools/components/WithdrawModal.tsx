@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal } from '@blackswap/uikit'
 import ModalActions from 'components/ModalActions'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import TokenInput from '../../../components/TokenInput'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
 
@@ -16,9 +16,9 @@ interface WithdrawModalProps {
 const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '' }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
-    const { t } = useTranslation();
+  const { t } = useTranslation()
 
-    const fullBalance = useMemo(() => {
+  const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
 
@@ -55,7 +55,9 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
             onDismiss()
           }}
         >
-          {pendingTx ? t('pool.modal.withdraw.pending', 'Pending Confirmation') : t('pool.modal.withdraw.onfirm', 'Confirm')}
+          {pendingTx
+            ? t('pool.modal.withdraw.pending', 'Pending Confirmation')
+            : t('pool.modal.withdraw.onfirm', 'Confirm')}
         </Button>
       </ModalActions>
     </Modal>

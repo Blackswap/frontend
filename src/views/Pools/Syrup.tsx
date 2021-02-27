@@ -13,15 +13,14 @@ import { useFarms, usePriceBnbBusd, usePools, usePriceEthBnb } from 'state/hooks
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import PoolCard from './components/PoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import Divider from './components/Divider'
-import { tokenName as tokenBaseName, images} from '../../config/app'
-
+import { tokenName as tokenBaseName, images } from '../../config/app'
 
 const Farm: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const { path } = useRouteMatch()
   const { account } = useWallet()

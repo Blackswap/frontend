@@ -12,13 +12,11 @@ import { useFarms, usePriceBnbBusd, usePriceCakeBusd, usePriceEthBusd } from 'st
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
 import Divider from './components/Divider'
 import { tokenName, images } from '../../config/app'
-
-
 
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
@@ -27,7 +25,7 @@ const Farms: React.FC = () => {
   const bnbPrice = usePriceBnbBusd()
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const ethPriceUsd = usePriceEthBusd()
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Image, Button } from '@blackswap/uikit'
 import { CommunityTag } from 'components/Tags'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import Card from './Card'
 import CardTitle from './CardTitle'
 
@@ -32,7 +32,7 @@ const Footer = styled.div`
   padding: 24px;
 `
 const Coming: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <Card>

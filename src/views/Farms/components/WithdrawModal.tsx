@@ -4,7 +4,7 @@ import { Button, Modal } from '@blackswap/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 interface WithdrawModalProps {
   max: BigNumber
@@ -19,7 +19,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
-    const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
@@ -56,7 +56,9 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           }}
           fullWidth
         >
-          {pendingTx ? t('farm.modal.withdraw.pending', 'Pending Confirmation') : t('farm.modal.withdraw.confirm', 'Confirm')}
+          {pendingTx
+            ? t('farm.modal.withdraw.pending', 'Pending Confirmation')
+            : t('farm.modal.withdraw.confirm', 'Confirm')}
         </Button>
       </ModalActions>
     </Modal>

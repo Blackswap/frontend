@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js'
 import useAllEarnings from 'hooks/useAllEarnings'
 import { usePriceCakeBusd } from 'state/hooks'
 import styled from 'styled-components'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import CardValue from './CardValue'
 import CardBusdValue from './CardBusdValue'
 
@@ -15,7 +15,7 @@ const Block = styled.div`
 `
 
 const CakeHarvestBalance = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const { account } = useWallet()
   const allEarnings = useAllEarnings()

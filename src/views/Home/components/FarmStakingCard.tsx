@@ -5,7 +5,7 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from 'components/UnlockButton'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import CakeHarvestBalance from './CakeHarvestBalance'
 import CakeWalletBalance from './CakeWalletBalance'
 import { tokenName, images } from '../../../config/app'
@@ -35,7 +35,7 @@ const Actions = styled.div`
 `
 
 const FarmedStakingCard = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWallet()
   const farmsWithBalance = useFarmsWithBalance()
@@ -58,15 +58,15 @@ const FarmedStakingCard = () => {
     <StyledFarmStakingCard>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {t( 'farmstake.heading','Farms & Staking')}
+          {t('farmstake.heading', 'Farms & Staking')}
         </Heading>
-        <CardImage src={images.card.farming.logo } alt={`${tokenName  } logo` } width={64} height={64} />
+        <CardImage src={images.card.farming.logo} alt={`${tokenName} logo`} width={64} height={64} />
         <Block>
-          <Label>{t( 'farmstake.harvest',`${tokenName} to Harvest`)}:</Label>
+          <Label>{t('farmstake.harvest', `${tokenName} to Harvest`)}:</Label>
           <CakeHarvestBalance />
         </Block>
         <Block>
-          <Label>{t( 'farmstake.in_wallet',`${tokenName} in Wallet`)}:</Label>
+          <Label>{t('farmstake.in_wallet', `${tokenName} in Wallet`)}:</Label>
           <CakeWalletBalance />
         </Block>
         <Actions>
@@ -78,8 +78,8 @@ const FarmedStakingCard = () => {
               fullWidth
             >
               {pendingTx
-                ? t( 'farmstake.collect',`Collecting ${tokenName}`)
-                : t( 'farmstake.harvest_all',`Harvest all (${balancesWithValue.length})`)}
+                ? t('farmstake.collect', `Collecting ${tokenName}`)
+                : t('farmstake.harvest_all', `Harvest all (${balancesWithValue.length})`)}
             </Button>
           ) : (
             <UnlockButton fullWidth />

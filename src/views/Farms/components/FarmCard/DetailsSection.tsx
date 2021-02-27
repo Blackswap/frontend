@@ -2,7 +2,7 @@ import React from 'react'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from '@blackswap/uikit'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -38,7 +38,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   lpLabel,
   addLiquidityUrl,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <Wrapper>

@@ -5,7 +5,7 @@ import { Button, Modal } from '@blackswap/uikit'
 import ModalActions from 'components/ModalActions'
 import Balance from 'components/Balance'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 interface DepositModalProps {
   earnings: BigNumber
@@ -16,7 +16,7 @@ interface DepositModalProps {
 
 const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDismiss, tokenName = '' }) => {
   const [pendingTx, setPendingTx] = useState(false)
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(earnings)
@@ -24,7 +24,10 @@ const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDis
 
   return (
     <Modal
-      title={`${t('pool.modal.compound.compound', 'Compound')} ${t('pool.modal.compound.earned', `${tokenName} Earned`)}`}
+      title={`${t('pool.modal.compound.compound', 'Compound')} ${t(
+        'pool.modal.compound.earned',
+        `${tokenName} Earned`,
+      )}`}
       onDismiss={onDismiss}
     >
       <BalanceRow>
@@ -45,7 +48,9 @@ const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDis
             onDismiss()
           }}
         >
-          {pendingTx ? t('pool.modal.compound.pending', 'Pending Confirmation') : t('pool.modal.compound.confirm', 'Confirm')}
+          {pendingTx
+            ? t('pool.modal.compound.pending', 'Pending Confirmation')
+            : t('pool.modal.compound.confirm', 'Confirm')}
         </Button>
       </ModalActions>
     </Modal>

@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { useRouteMatch, Link } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem, Text, Toggle } from '@blackswap/uikit'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 const FarmTabButtons = ({ stackedOnly, setStackedOnly }) => {
   const { url, isExact } = useRouteMatch()
-    const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <Wrapper>

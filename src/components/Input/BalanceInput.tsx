@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button } from '@blackswap/uikit'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import Input, { InputProps } from './Input'
 
 interface Props extends InputProps {
@@ -35,7 +35,7 @@ const StyledTokenSymbol = styled.span`
 `
 
 const BalanceInput: React.FC<Props> = ({ max, symbol, onChange, onSelectMax, value }) => {
-    const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <div>

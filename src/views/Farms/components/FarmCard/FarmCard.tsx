@@ -10,7 +10,7 @@ import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -50,7 +50,7 @@ const FCard = styled.div`
   align-self: baseline;
   background: ${(props) => props.theme.card.background};
   border-radius: ${({ theme }) => theme.radii.small};
-  box-shadow: 0px 0px 0px 1px #7E989D, 0px 0px 0px 4px rgba(49, 208, 170, 0.2);
+  box-shadow: 0px 0px 0px 1px #7e989d, 0px 0px 0px 4px rgba(49, 208, 170, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -82,7 +82,7 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice, ethPrice, ethereum, account }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 

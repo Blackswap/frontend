@@ -6,12 +6,12 @@ import { getCakeAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePriceCakeBusd } from 'state/hooks'
 import { BigNumber } from 'bignumber.js'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import CardValue from './CardValue'
 import CardBusdValue from './CardBusdValue'
 
 const CakeWalletBalance = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const cakeBalance = useTokenBalance(getCakeAddress())
   const busdBalance = new BigNumber(getBalanceNumber(cakeBalance)).multipliedBy(usePriceCakeBusd()).toNumber()

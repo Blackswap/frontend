@@ -2,24 +2,24 @@ import React from 'react'
 import styled from 'styled-components'
 import { useRouteMatch, Link } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem, Toggle, Text } from '@blackswap/uikit'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 const PoolTabButtons = ({ stackedOnly, setStackedOnly }) => {
   const { url, isExact } = useRouteMatch()
-    const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <Wrapper>
       <ToggleWrapper>
         <Toggle checked={stackedOnly} onChange={() => setStackedOnly(!stackedOnly)} />
-          <Text> {t('btn.pool.staked_only', 'Staked only')}</Text>
+        <Text> {t('btn.pool.staked_only', 'Staked only')}</Text>
       </ToggleWrapper>
       <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm" variant="subtle">
         <ButtonMenuItem as={Link} to={`${url}`}>
-            {t('btn.pool.active', 'Active')}
+          {t('btn.pool.active', 'Active')}
         </ButtonMenuItem>
         <ButtonMenuItem as={Link} to={`${url}/history`}>
-            {t('btn.pool.inactive', 'Inactive')}
+          {t('btn.pool.inactive', 'Inactive')}
         </ButtonMenuItem>
       </ButtonMenu>
     </Wrapper>

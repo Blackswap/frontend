@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, Heading, Text, LogoIcon } from '@blackswap/uikit'
 import Page from 'components/layout/Page'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 const StyledNotFound = styled.div`
   align-items: center;
@@ -13,7 +13,7 @@ const StyledNotFound = styled.div`
 `
 
 const NotFound = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <Page>

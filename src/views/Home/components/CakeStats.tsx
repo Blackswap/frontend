@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getTokenAddress } from 'utils/addressHelpers'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import CardValue from './CardValue'
 import { tokenName } from '../../../config/app'
 
@@ -22,7 +22,7 @@ const Row = styled.div`
 `
 
 const CakeStats = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getTokenAddress()))
   const suuply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
@@ -31,18 +31,18 @@ const CakeStats = () => {
     <StyledCakeStats>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {t( 'tokenStats.heading', `${tokenName} Stats`)}
+          {t('tokenStats.heading', `${tokenName} Stats`)}
         </Heading>
         <Row>
-          <Text fontSize="14px">{t( 'tokenStats.supply', `Total ${tokenName} Supply`)}</Text>
+          <Text fontSize="14px">{t('tokenStats.supply', `Total ${tokenName} Supply`)}</Text>
           {suuply && <CardValue fontSize="14px" value={suuply} />}
         </Row>
         <Row>
-          <Text fontSize="14px">{t( 'tokenStats.burned', `Total ${tokenName} Burned`)}</Text>
+          <Text fontSize="14px">{t('tokenStats.burned', `Total ${tokenName} Burned`)}</Text>
           <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
         </Row>
         <Row>
-          <Text fontSize="14px">{t( 'tokenStats.block', `New ${tokenName}/block`)}</Text>
+          <Text fontSize="14px">{t('tokenStats.block', `New ${tokenName}/block`)}</Text>
           <CardValue fontSize="14px" decimals={0} value={25} />
         </Row>
       </CardBody>

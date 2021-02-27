@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBody, Heading } from '@blackswap/uikit'
 import styled from 'styled-components'
 import { Timeline } from 'react-twitter-widgets'
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import { twitter } from '../../../config/app'
 
 const StyledTwitterCard = styled(Card)`
@@ -11,13 +11,13 @@ const StyledTwitterCard = styled(Card)`
 `
 
 const TwitterCard = () => {
-    const { t } = useTranslation();
-        console.log(twitter, process.env)
+  const { t } = useTranslation()
+  console.log(twitter, process.env)
   return (
     <StyledTwitterCard>
       <CardBody>
         <Heading size="xl" mb="24px">
-            { t('app.announcements', 'Announcements') }
+          {t('app.announcements', 'Announcements')}
         </Heading>
         <Timeline
           dataSource={{
