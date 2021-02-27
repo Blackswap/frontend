@@ -1,16 +1,17 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button } from '@pancakeswap-libs/uikit'
+import { Heading, Card, CardBody, Button } from '@blackswap/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import useI18n from 'hooks/useI18n'
 import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from 'components/UnlockButton'
+import {useTranslation} from "react-i18next";
 import CakeHarvestBalance from './CakeHarvestBalance'
 import CakeWalletBalance from './CakeWalletBalance'
+import { tokenName, images } from '../../../config/app'
 
 const StyledFarmStakingCard = styled(Card)`
-  background-image: url('/images/cake-bg.svg');
+  background-image: url('${images.card.farming.background}');
   background-repeat: no-repeat;
   background-position: top right;
   min-height: 376px;
@@ -34,9 +35,9 @@ const Actions = styled.div`
 `
 
 const FarmedStakingCard = () => {
+  const { t } = useTranslation();
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWallet()
-  const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
 
@@ -57,15 +58,15 @@ const FarmedStakingCard = () => {
     <StyledFarmStakingCard>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {TranslateString(542, 'Farms & Staking')}
+          {t( 'farmstake.heading','Farms & Staking')}
         </Heading>
-        <CardImage src="/images/cake.svg" alt="cake logo" width={64} height={64} />
+        <CardImage src={images.card.farming.logo } alt={`${tokenName  } logo` } width={64} height={64} />
         <Block>
-          <Label>{TranslateString(544, 'CAKE to Harvest')}:</Label>
+          <Label>{t( 'farmstake.harvest',`${tokenName} to Harvest`)}:</Label>
           <CakeHarvestBalance />
         </Block>
         <Block>
-          <Label>{TranslateString(546, 'CAKE in Wallet')}:</Label>
+          <Label>{t( 'farmstake.in_wallet',`${tokenName} in Wallet`)}:</Label>
           <CakeWalletBalance />
         </Block>
         <Actions>
@@ -77,8 +78,8 @@ const FarmedStakingCard = () => {
               fullWidth
             >
               {pendingTx
-                ? TranslateString(548, 'Collecting CAKE')
-                : TranslateString(532, `Harvest all (${balancesWithValue.length})`)}
+                ? t( 'farmstake.collect',`Collecting ${tokenName}`)
+                : t( 'farmstake.harvest_all',`Harvest all (${balancesWithValue.length})`)}
             </Button>
           ) : (
             <UnlockButton fullWidth />

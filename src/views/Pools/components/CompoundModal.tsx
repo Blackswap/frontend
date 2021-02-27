@@ -1,11 +1,11 @@
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import React, { useMemo, useState } from 'react'
-import { Button, Modal } from '@pancakeswap-libs/uikit'
+import { Button, Modal } from '@blackswap/uikit'
 import ModalActions from 'components/ModalActions'
 import Balance from 'components/Balance'
-import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import {useTranslation} from "react-i18next";
 
 interface DepositModalProps {
   earnings: BigNumber
@@ -16,14 +16,15 @@ interface DepositModalProps {
 
 const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDismiss, tokenName = '' }) => {
   const [pendingTx, setPendingTx] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation();
+
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(earnings)
   }, [earnings])
 
   return (
     <Modal
-      title={`${TranslateString(704, 'Compound')} ${TranslateString(330, `${tokenName} Earned`)}`}
+      title={`${t('pool.modal.compound.compound', 'Compound')} ${t('pool.modal.compound.earned', `${tokenName} Earned`)}`}
       onDismiss={onDismiss}
     >
       <BalanceRow>
@@ -31,7 +32,7 @@ const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDis
       </BalanceRow>
       <ModalActions>
         <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {TranslateString(462, 'Cancel')}
+          {t('pool.modal.compound.cancel', 'Cancel')}
         </Button>
         <Button
           id="compound-cake"
@@ -44,7 +45,7 @@ const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDis
             onDismiss()
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('pool.modal.compound.pending', 'Pending Confirmation') : t('pool.modal.compound.confirm', 'Confirm')}
         </Button>
       </ModalActions>
     </Modal>

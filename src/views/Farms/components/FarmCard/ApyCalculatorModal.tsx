@@ -1,9 +1,10 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { Modal, Text, LinkExternal, Flex } from '@pancakeswap-libs/uikit'
-import useI18n from 'hooks/useI18n'
+import { Modal, Text, LinkExternal, Flex } from '@blackswap/uikit'
 import { calculateCakeEarnedPerThousandDollars, apyModalRoi } from 'utils/compoundApyHelpers'
+import {useTranslation} from "react-i18next";
+import { tokenName } from '../../../../config/app'
 
 interface ApyCalculatorModalProps {
   onDismiss?: () => void
@@ -36,9 +37,9 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   apy,
   addLiquidityUrl,
 }) => {
-  const TranslateString = useI18n()
   const farmApy = apy.times(new BigNumber(100)).toNumber()
   const oneThousandDollarsWorthOfCake = 1000 / cakePrice.toNumber()
+  const { t } = useTranslation();
 
   const cakeEarnedPerThousand1D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 1, farmApy, cakePrice })
   const cakeEarnedPerThousand7D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 7, farmApy, cakePrice })
@@ -50,17 +51,17 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
       <Grid>
         <GridItem>
           <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
-            {TranslateString(860, 'Timeframe')}
+            {t('farm.card.timeframe', 'Timeframe')}
           </Text>
         </GridItem>
         <GridItem>
           <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
-            {TranslateString(858, 'ROI')}
+            {t('farm.card.roi', 'ROI')}
           </Text>
         </GridItem>
         <GridItem>
           <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
-            {TranslateString(864, 'CAKE per $1000')}
+            {t('farm.card.token_per_1k', `${tokenName} per $1000'`)}
           </Text>
         </GridItem>
         {/* 1 day row */}
@@ -113,14 +114,14 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
       </Grid>
       <Description fontSize="12px" color="textSubtle">
-        {TranslateString(
-          866,
+        {t(
+          'farm.card.calc_help_text',
           'Calculated based on current rates. Compounding once daily. Rates are estimates provided for your convenience only, and by no means represent guaranteed returns.',
         )}
       </Description>
       <Flex justifyContent="center">
         <LinkExternal href={addLiquidityUrl}>
-          {TranslateString(999, 'Get')} {lpLabel}
+          {t('farm.card.get', 'Get')} {lpLabel}
         </LinkExternal>
       </Flex>
     </Modal>

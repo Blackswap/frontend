@@ -1,0 +1,18 @@
+{
+  "app": {
+    "name": "BlackSwap",
+    "heading": "The #1 AMM and yield farm on Blablabla.",
+    "announcements": "Follow us on twitter."
+  },
+  "home": {
+
+  },
+  "farm": {
+  },
+  "tokenStats": {
+  },
+  "farmstake": {
+  },
+  "btn" : {
+  }
+}

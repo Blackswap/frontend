@@ -7,6 +7,9 @@ export const getAddress = (address: Address): string => {
   return address[chainId] ? address[chainId] : address[mainNetChainId]
 }
 
+export const getTokenAddress = () => {
+  return getAddress(addresses.base)
+}
 export const getCakeAddress = () => {
   return getAddress(addresses.cake)
 }

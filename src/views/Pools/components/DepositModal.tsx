@@ -1,9 +1,9 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal } from '@pancakeswap-libs/uikit'
+import { Button, Modal } from '@blackswap/uikit'
 import ModalActions from 'components/ModalActions'
+import {useTranslation} from "react-i18next";
 import TokenInput from '../../../components/TokenInput'
-import useI18n from '../../../hooks/useI18n'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
 
 interface DepositModalProps {
@@ -15,8 +15,9 @@ interface DepositModalProps {
 
 const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '' }) => {
   const [val, setVal] = useState('')
-  const [pendingTx, setPendingTx] = useState(false)
-  const TranslateString = useI18n()
+    const { t } = useTranslation();
+
+    const [pendingTx, setPendingTx] = useState(false)
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
@@ -33,7 +34,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={`${TranslateString(316, 'Deposit')} ${tokenName} Tokens`} onDismiss={onDismiss}>
+    <Modal title={`${t('pool.modal.deposit.deposit', 'Deposit')} ${tokenName} Tokens`} onDismiss={onDismiss}>
       <TokenInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -43,7 +44,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
       />
       <ModalActions>
         <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {TranslateString(462, 'Cancel')}
+          {t('pool.modal.deposit.cancel', 'Cancel')}
         </Button>
         <Button
           fullWidth
@@ -55,7 +56,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             onDismiss()
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('pool.modal.deposit.pending', 'Pending Confirmation') : t('pool.modal.deposit.confirm', 'Confirm')}
         </Button>
       </ModalActions>
     </Modal>

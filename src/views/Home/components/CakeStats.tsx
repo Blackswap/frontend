@@ -1,11 +1,12 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text } from '@pancakeswap-libs/uikit'
+import { Card, CardBody, Heading, Text } from '@blackswap/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
-import useI18n from 'hooks/useI18n'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getTokenAddress } from 'utils/addressHelpers'
+import {useTranslation} from "react-i18next";
 import CardValue from './CardValue'
+import { tokenName } from '../../../config/app'
 
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
@@ -21,27 +22,27 @@ const Row = styled.div`
 `
 
 const CakeStats = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation();
   const totalSupply = useTotalSupply()
-  const burnedBalance = getBalanceNumber(useBurnedBalance(getCakeAddress()))
-  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
+  const burnedBalance = getBalanceNumber(useBurnedBalance(getTokenAddress()))
+  const suuply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 
   return (
     <StyledCakeStats>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {TranslateString(534, 'Cake Stats')}
+          {t( 'tokenStats.heading', `${tokenName} Stats`)}
         </Heading>
         <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Total CAKE Supply')}</Text>
-          {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} />}
+          <Text fontSize="14px">{t( 'tokenStats.supply', `Total ${tokenName} Supply`)}</Text>
+          {suuply && <CardValue fontSize="14px" value={suuply} />}
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(538, 'Total CAKE Burned')}</Text>
+          <Text fontSize="14px">{t( 'tokenStats.burned', `Total ${tokenName} Burned`)}</Text>
           <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(540, 'New CAKE/block')}</Text>
+          <Text fontSize="14px">{t( 'tokenStats.block', `New ${tokenName}/block`)}</Text>
           <CardValue fontSize="14px" decimals={0} value={25} />
         </Row>
       </CardBody>

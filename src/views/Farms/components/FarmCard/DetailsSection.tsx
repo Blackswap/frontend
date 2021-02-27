@@ -1,7 +1,8 @@
 import React from 'react'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
-import { Text, Flex, Link, LinkExternal } from '@pancakeswap-libs/uikit'
+import { Text, Flex, Link, LinkExternal } from '@blackswap/uikit'
+import {useTranslation} from "react-i18next";
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -37,23 +38,23 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   lpLabel,
   addLiquidityUrl,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation();
 
   return (
     <Wrapper>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(316, 'Stake')}:</Text>
+        <Text>{t('farm.card.stake', 'Stake')}:</Text>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       {!removed && (
         <Flex justifyContent="space-between">
-          <Text>{TranslateString(23, 'Total Liquidity')}:</Text>
+          <Text>{t('farm.card.total_liquidity', 'Total Liquidity')}:</Text>
           <Text>{totalValueFormated}</Text>
         </Flex>
       )}
       <Flex justifyContent="flex-start">
         <Link external href={bscScanAddress} bold={false}>
-          {TranslateString(356, 'View on BscScan')}
+          {t('farm.card.view_bscscan', 'View on BscScan')}
         </Link>
       </Flex>
     </Wrapper>

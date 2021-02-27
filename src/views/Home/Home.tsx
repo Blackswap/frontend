@@ -1,19 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text, BaseLayout } from '@pancakeswap-libs/uikit'
-import useI18n from 'hooks/useI18n'
+import {Heading, Text, BaseLayout } from '@blackswap/uikit'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
-import LotteryCard from 'views/Home/components/LotteryCard'
 import CakeStats from 'views/Home/components/CakeStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
-import EarnAPYCard from 'views/Home/components/EarnAPYCard'
-import EarnAssetCard from 'views/Home/components/EarnAssetCard'
-import WinCard from 'views/Home/components/WinCard'
+import { useTranslation } from 'react-i18next';
+import TwitterCard from './components/TwitterCard'
+import { images, appName } from '../../config/app'
+
 
 const Hero = styled.div`
   align-items: center;
-  background-image: url('/images/pan-bg-mobile.svg');
+  background-image: url('${images.hero.right.mobile}');
   background-repeat: no-repeat;
   background-position: top center;
   display: flex;
@@ -25,8 +24,8 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/pan-bg2.svg'), url('/images/pan-bg.svg');
-    background-position: left center, right center;
+    background-image: url('${images.hero.right.default}');
+    background-position: right center;
     height: 165px;
     padding-top: 0;
   }
@@ -55,48 +54,21 @@ const Cards = styled(BaseLayout)`
   }
 `
 
-const CTACards = styled(BaseLayout)`
-  align-items: start;
-  margin-bottom: 32px;
-
-  & > div {
-    grid-column: span 6;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    & > div {
-      grid-column: span 8;
-    }
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    & > div {
-      grid-column: span 4;
-    }
-  }
-`
-
 const Home: React.FC = () => {
-  const TranslateString = useI18n()
-
+  const { t } = useTranslation();
   return (
     <Page>
       <Hero>
         <Heading as="h1" size="xl" mb="24px" color="secondary">
-          {TranslateString(576, 'PancakeSwap')}
+          { t('app.name', appName )}
         </Heading>
-        <Text>{TranslateString(578, 'The #1 AMM and yield farm on Binance Smart Chain.')}</Text>
+        <Text>{ t('app.heading','The #1 AMM and yield farm on Blablabla.' )}</Text>
       </Hero>
       <div>
         <Cards>
           <FarmStakingCard />
-          <LotteryCard />
+          <TwitterCard />
         </Cards>
-        <CTACards>
-          <EarnAPYCard />
-          <EarnAssetCard />
-          <WinCard />
-        </CTACards>
         <Cards>
           <CakeStats />
           <TotalValueLockedCard />

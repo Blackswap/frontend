@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react'
 import BigNumber from 'bignumber.js'
 import { kebabCase } from 'lodash'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Toast, toastTypes } from '@pancakeswap-libs/uikit'
+import { Toast, toastTypes } from '@blackswap/uikit'
 import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
@@ -18,6 +18,8 @@ import { State, Farm, Pool, ProfileState, TeamsState, AchievementState } from '.
 import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
+import { QuoteToken } from '../config/constants/types'
+
 
 const ZERO = new BigNumber(0)
 
@@ -191,3 +193,45 @@ export const useAchievements = () => {
   const achievements: AchievementState['data'] = useSelector((state: State) => state.achievements.data)
   return achievements
 }
+
+
+export const useTotalValue = (): BigNumber => {
+  const farms = useFarms()
+  const { account } = useWallet()
+  const pools = usePools(account)
+  const bnbPrice = usePriceBnbBusd()
+  const ethPrice = usePriceEthBusd()
+  const saltPrice = usePriceCakeBusd()
+
+  let farmsTotalValue = new BigNumber(0)
+  for (let i = 0; i < farms.length; i++) {
+    const farm = farms[i]
+    if (farm.lpTotalInQuoteToken) {
+      let val: BigNumber
+      if (farm.quoteTokenSymbol === QuoteToken.BNB) {
+        val = bnbPrice.times(farm.lpTotalInQuoteToken)
+      } else if (farm.quoteTokenSymbol === QuoteToken.CAKE) {
+        val = saltPrice.times(farm.lpTotalInQuoteToken)
+      } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
+        val = ethPrice.times(farm.lpTotalInQuoteToken)
+      } else {
+        val = farm.lpTotalInQuoteToken
+      }
+      farmsTotalValue = farmsTotalValue.plus(val)
+    }
+  }
+
+  let poolsTotalValue = new BigNumber(0)
+  for (let i = 0; i < pools.length; i++) {
+    const pool = pools[i]
+    let poolValue: BigNumber
+    if (pool.stakingTokenName === QuoteToken.CAKE) {
+      const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18));
+      poolValue = saltPrice.times(totalSaltStaked)
+    }
+    poolsTotalValue = poolsTotalValue.plus(poolValue)
+  }
+
+  return farmsTotalValue.plus(poolsTotalValue)
+}
+

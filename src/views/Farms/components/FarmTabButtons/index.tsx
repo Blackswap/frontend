@@ -1,25 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useRouteMatch, Link } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem, Text, Toggle } from '@pancakeswap-libs/uikit'
-import useI18n from 'hooks/useI18n'
+import { ButtonMenu, ButtonMenuItem, Text, Toggle } from '@blackswap/uikit'
+import {useTranslation} from "react-i18next";
 
 const FarmTabButtons = ({ stackedOnly, setStackedOnly }) => {
   const { url, isExact } = useRouteMatch()
-  const TranslateString = useI18n()
+    const { t } = useTranslation();
 
   return (
     <Wrapper>
       <ToggleWrapper>
         <Toggle checked={stackedOnly} onChange={() => setStackedOnly(!stackedOnly)} />
-        <Text> {TranslateString(1116, 'Staked only')}</Text>
+        <Text> {t('btn.farm.staked_only', 'Staked only')}</Text>
       </ToggleWrapper>
       <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm" variant="subtle">
         <ButtonMenuItem as={Link} to={`${url}`}>
-          {TranslateString(698, 'Active')}
+          {t('btn.farm.active', 'Active')}
         </ButtonMenuItem>
         <ButtonMenuItem as={Link} to={`${url}/history`}>
-          {TranslateString(700, 'Inactive')}
+          {t('btn.farm.inactive', 'Inactive')}
         </ButtonMenuItem>
       </ButtonMenu>
     </Wrapper>

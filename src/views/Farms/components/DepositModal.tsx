@@ -1,10 +1,10 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal, LinkExternal } from '@pancakeswap-libs/uikit'
+import { Button, Modal, LinkExternal } from '@blackswap/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
-import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import {useTranslation} from "react-i18next";
 
 interface DepositModalProps {
   max: BigNumber
@@ -15,9 +15,10 @@ interface DepositModalProps {
 }
 
 const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
+
+    const { t } = useTranslation();
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
-  const TranslateString = useI18n()
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
@@ -34,7 +35,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={TranslateString(1068, 'Stake LP tokens')} onDismiss={onDismiss}>
+    <Modal title={t('farm.modal.deposit.stake_lp', 'Stake LP tokens')} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -42,11 +43,11 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         max={fullBalance}
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
-        inputTitle={TranslateString(1070, 'Stake')}
+        inputTitle={t('farm.modal.deposit.stake', 'Stake')}
       />
       <ModalActions>
         <Button variant="secondary" onClick={onDismiss} fullWidth>
-          {TranslateString(462, 'Cancel')}
+          {t('farm.modal.deposit.cancel', 'Cancel')}
         </Button>
         <Button
           fullWidth
@@ -58,11 +59,11 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             onDismiss()
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('farm.modal.deposit.pending', 'Pending Confirmation') : t('farm.modal.deposit.confirm', 'Confirm')}
         </Button>
       </ModalActions>
       <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }}>
-        {TranslateString(999, 'Get')} {tokenName}
+        {t('farm.modal.deposit.get', 'Get')} {tokenName}
       </LinkExternal>
     </Modal>
   )

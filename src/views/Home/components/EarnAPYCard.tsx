@@ -1,12 +1,12 @@
 import React, { useCallback, useRef } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from '@pancakeswap-libs/uikit'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from '@blackswap/uikit'
 import { NavLink } from 'react-router-dom'
-import useI18n from 'hooks/useI18n'
 import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
 import { useFarms, usePriceBnbBusd } from 'state/hooks'
 import { BLOCKS_PER_YEAR, CAKE_PER_BLOCK, CAKE_POOL_PID } from 'config'
+import {useTranslation} from "react-i18next";
 
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
@@ -22,9 +22,9 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   line-height: 44px;
 `
 const EarnAPYCard = () => {
-  const TranslateString = useI18n()
   const farmsLP = useFarms()
   const bnbPrice = usePriceBnbBusd()
+  const { t } = useTranslation();
 
   const maxAPY = useRef(Number.MIN_VALUE)
 
@@ -78,18 +78,11 @@ const EarnAPYCard = () => {
     <StyledFarmStakingCard>
       <CardBody>
         <Heading color="contrast" size="lg">
-          Earn up to
+          {t('home.earn_up_to', 'Earn up to')}
         </Heading>
-        <CardMidContent color="#7645d9">
-          {getHighestAPY() ? (
-            `${getHighestAPY()}% ${TranslateString(736, 'APR')}`
-          ) : (
-            <Skeleton animation="pulse" variant="rect" height="44px" />
-          )}
-        </CardMidContent>
         <Flex justifyContent="space-between">
           <Heading color="contrast" size="lg">
-            in Farms
+            {t('home.in_farms', 'in Farms')}
           </Heading>
           <NavLink exact activeClassName="active" to="/farms" id="farm-apy-cta">
             <ArrowForwardIcon mt={30} color="primary" />

@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import useI18n from 'hooks/useI18n'
 import { ChevronDown, ChevronUp } from 'react-feather'
 import Balance from 'components/Balance'
 import { CommunityTag, CoreTag, BinanceTag } from 'components/Tags'
 import { PoolCategory } from 'config/constants/types'
+import {useTranslation} from "react-i18next";
 
 const tags = {
   [PoolCategory.BINANCE]: BinanceTag,
@@ -81,8 +81,8 @@ const CardFooter: React.FC<Props> = ({
   poolCategory,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const TranslateString = useI18n()
   const Icon = isOpen ? ChevronUp : ChevronDown
+  const { t } = useTranslation();
 
   const handleClick = () => setIsOpen(!isOpen)
   const Tag = tags[poolCategory]
@@ -94,7 +94,7 @@ const CardFooter: React.FC<Props> = ({
           <Tag />
         </FlexFull>
         <StyledDetailsButton onClick={handleClick}>
-          {isOpen ? TranslateString(1066, 'Hide') : TranslateString(658, 'Details')} <Icon />
+          {isOpen ? t('pool.card.footer.hide', 'Hide') : t('pool.card.footer.details', 'Details')} <Icon />
         </StyledDetailsButton>
       </Row>
       {isOpen && (
@@ -105,7 +105,7 @@ const CardFooter: React.FC<Props> = ({
                 <span role="img" aria-label="syrup">
                   🥞{' '}
                 </span>
-                {TranslateString(408, 'Total')}
+                {t('pool.card.footer.total', 'Total')}
               </Label>
             </FlexFull>
             <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(totalStaked)} />
@@ -113,7 +113,7 @@ const CardFooter: React.FC<Props> = ({
           {blocksUntilStart > 0 && (
             <Row>
               <FlexFull>
-                <Label>{TranslateString(410, 'Start')}:</Label>
+                <Label>{t('pool.card.footer.start', 'Start')}:</Label>
               </FlexFull>
               <Balance fontSize="14px" isDisabled={isFinished} value={blocksUntilStart} decimals={0} />
             </Row>
@@ -121,13 +121,13 @@ const CardFooter: React.FC<Props> = ({
           {blocksUntilStart === 0 && blocksRemaining > 0 && (
             <Row>
               <FlexFull>
-                <Label>{TranslateString(410, 'End')}:</Label>
+                <Label>{t('pool.card.footer.end', 'End')}:</Label>
               </FlexFull>
               <Balance fontSize="14px" isDisabled={isFinished} value={blocksRemaining} decimals={0} />
             </Row>
           )}
           <TokenLink href={projectLink} target="_blank">
-            {TranslateString(412, 'View project site')}
+            {t('pool.card.footer.project', 'View project site')}
           </TokenLink>
         </Details>
       )}
