@@ -1,10 +1,9 @@
 export default {
   logo: '/images/token-logo.svg',
   hero: {
-    right: {
-      default: '/images/hero-right.svg',
-      mobile: '/images/hero-right-mobile.svg',
-    },
+    right: '/images/hero-right.svg',
+    mobile: '/images/hero-mobile.svg',
+    left: '/images/hero-left.svg',
   },
   card: {
     farming: {
