@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { StringTranslations } from '@crowdin/crowdin-api-client'
 import { TranslationsContext } from 'contexts/Localisation/translationsContext'
 import { allLanguages, EN } from 'config/localisation/languageCodes'
-import translationFR from '../../lang/fr.json'
+import i18n from '../../utils/i18n'
 
-const CACHE_KEY = 'pancakeSwapLanguage'
+const CACHE_KEY = process.env.REACT_APP_CACHE_KEY
 
 export interface LangType {
   code: string
@@ -24,16 +23,6 @@ const LanguageContext = React.createContext({
   translatedLanguage: EN,
   setTranslatedLanguage: () => undefined,
 } as LanguageState)
-
-const fileId = 8
-const projectId = parseInt(process.env.REACT_APP_CROWDIN_PROJECTID)
-const stringTranslationsApi = new StringTranslations({
-  token: process.env.REACT_APP_CROWDIN_APIKEY,
-})
-
-const fetchTranslationsForSelectedLanguage = (selectedLanguage) => {
-  return stringTranslationsApi.listLanguageTranslations(projectId, selectedLanguage.code, undefined, fileId, 200)
-}
 
 const LanguageContextProvider = ({ children }) => {
   const [selectedLanguage, setSelectedLanguage] = useState<any>(EN)
@@ -56,25 +45,8 @@ const LanguageContextProvider = ({ children }) => {
     }
   }, [])
 
-  useEffect(() => {
-    if (selectedLanguage) {
-      fetchTranslationsForSelectedLanguage(selectedLanguage)
-        .then((translationApiResponse) => {
-          if (translationApiResponse.data.length < 1) {
-            setTranslations([])
-          } else {
-            setTranslations(translationApiResponse.data)
-          }
-        })
-        .then(() => setTranslatedLanguage(selectedLanguage))
-        .catch((e) => {
-          setTranslations([])
-          console.error('Error while loading translations', e)
-        })
-    }
-  }, [selectedLanguage, setTranslations])
-
   const handleLanguageSelect = (langObject: LangType) => {
+    i18n.changeLanguage(langObject.code)
     setSelectedLanguage(langObject)
     localStorage.setItem(CACHE_KEY, langObject.code)
   }
